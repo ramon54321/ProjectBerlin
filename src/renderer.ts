@@ -1,20 +1,18 @@
-import { drawCell } from './Drawing/cells'
 import * as Drawing from './Drawing'
+import * as Graphics from './Graphics'
 import * as Input from './Input'
 import * as Logic from './Logic'
-
-// Parameters
-export const WORLD_WIDTH = 64
-export const WORLD_HEIGHT = 64
+import * as Config from './config'
+import { ClickInfo } from './types'
 
 // Setup
-export const drawingInfo = Drawing.init()
-Input.init(drawingInfo, WORLD_WIDTH, WORLD_HEIGHT, (clickInfo: Input.ClickInfo) => Logic.onClickCell(clickInfo))
+Drawing.init()
+Input.init(Drawing.drawingInfo, Config.WORLD_WIDTH, Config.WORLD_HEIGHT, (clickInfo: ClickInfo) => Logic.onClickCell(clickInfo))
 
 // Draw initial world
-Drawing.drawRect(drawingInfo.context, 0, 0, drawingInfo.width, drawingInfo.height, { color: "#ccd5ae" })
-for (let y = 0; y < WORLD_HEIGHT; y++) {
-  for (let x = 0; x < WORLD_WIDTH; x++) {
-    drawCell({x, y})
+Drawing.drawRect(Drawing.drawingInfo.context, 0, 0, Drawing.drawingInfo.width, Drawing.drawingInfo.height, { color: "#ccd5ae" })
+for (let y = 0; y < Config.WORLD_HEIGHT; y++) {
+  for (let x = 0; x < Config.WORLD_WIDTH; x++) {
+    Graphics.refreshCell({x, y})
   }
 }

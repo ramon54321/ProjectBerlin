@@ -1,6 +1,6 @@
 import * as Loki from 'lokijs'
-import { drawCell } from '../Drawing/cells'
-import { ClickInfo } from '../Input'
+import * as Graphics from '../Graphics'
+import { ClickInfo } from '../types'
 import TurnManager from './TurnManager'
 import PlayerManager from './PlayerManager'
 
@@ -19,7 +19,7 @@ export function onClickCell(clickInfo: ClickInfo) {
     tokens.insert(new Token(position.x, position.y, playerManager.getPlayerByIndex(turnManager.getTurn()).color))
   }
   turnManager.nextTurn()
-  drawCell(position, database)
+  Graphics.refreshCell(position, database)
 }
 
 export class Token {

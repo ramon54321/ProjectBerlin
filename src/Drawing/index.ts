@@ -9,7 +9,9 @@ export interface DrawingInfo {
   scaledHeight: number
 }
 
-export function init(): DrawingInfo {
+export let drawingInfo: DrawingInfo
+
+export function init() {
   const screenWidth = window.innerWidth
   const screenHeight = window.innerHeight
   
@@ -25,7 +27,7 @@ export function init(): DrawingInfo {
   canvas.width = screenWidth * CANVAS_SCALE
   canvas.height = screenHeight * CANVAS_SCALE
 
-  return {
+  drawingInfo = {
     context: context,
     canvas: canvas,
     width: canvas.width,

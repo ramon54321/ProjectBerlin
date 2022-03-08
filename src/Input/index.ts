@@ -1,4 +1,4 @@
-import { Vec2 } from '../types'
+import { ClickInfo } from '../types'
 import { DrawingInfo, CANVAS_SCALE } from '../Drawing'
 
 export function init(drawingInfo: DrawingInfo, worldWidth: number, worldHeight: number, onClickCell: (clickInfo: ClickInfo) => void) {
@@ -9,9 +9,4 @@ export function init(drawingInfo: DrawingInfo, worldWidth: number, worldHeight: 
     const cellPosition = { x: Math.floor(position.x / cellWidth), y: Math.floor(position.y / cellHeight)}
     onClickCell({position, cellPosition})
   })
-}
-
-export interface ClickInfo {
-  position: Vec2
-  cellPosition: Vec2
 }
