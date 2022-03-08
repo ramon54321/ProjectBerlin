@@ -1,0 +1,56 @@
+{
+  "name": "project-berlin",
+  "productName": "Project Berlin",
+  "description": "Game of Nations",
+  "keywords": [],
+  "main": "obj/index.js",
+  "version": "0.0.1",
+  "author": "ramon54321",
+  "scripts": {
+    "compile": "rm -rf obj && tsc && cp index.html obj/index.html && cp styles.css obj/styles.css",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "dependencies": {
+    "lokijs": "^1.5.12"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.59",
+    "@electron-forge/maker-deb": "^6.0.0-beta.59",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.59",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
+    "@electron-forge/maker-zip": "^6.0.0-beta.59",
+    "@types/electron": "^1.6.10",
+    "@types/lokijs": "^1.5.7",
+    "electron": "16.0.6",
+    "typescript": "^4.6.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel"
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "license": "MIT"
+}
