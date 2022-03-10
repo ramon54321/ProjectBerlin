@@ -16,6 +16,9 @@ export default class PlayerManager {
   getPlayerByIndex(index: number): Player {
     return this.players[index]
   }
+  getPlayerCount(): number {
+    return this.players.length
+  }
 }
 
 class Player {
