@@ -3,11 +3,13 @@ import * as Graphics from './Graphics'
 import * as Input from './Input'
 import * as Logic from './Logic'
 import * as Config from './config'
+import * as UI from './UI'
 import { ClickInfo } from './types'
 
 // Setup
 Drawing.init()
 Input.init(Drawing.drawingInfo, Config.WORLD_WIDTH, Config.WORLD_HEIGHT, (clickInfo: ClickInfo) => Logic.onClickCell(clickInfo))
+UI.init()
 
 // Draw initial world
 Drawing.drawRect(Drawing.drawingInfo.context, 0, 0, Drawing.drawingInfo.width, Drawing.drawingInfo.height, { color: "#ccd5ae" })

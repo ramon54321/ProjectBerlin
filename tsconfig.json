@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     // "noImplicitAny": true,
+    "jsx": "react-jsx",
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
