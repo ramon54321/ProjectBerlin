@@ -1,32 +1,27 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { database } from "."
+import { store, database } from '.'
 import { HumveeToken, ObstructionToken, SquadToken, Token } from "../Logic/Token"
 
-const tokens = database.addCollection<Token>("tokens")
+export const tokens = database.addCollection<Token>("tokens")
 
-const tokensSlice = createSlice({
-  name: "tokens",
-  initialState: tokens.find(),
-  reducers: {
-    insert: (state, action: PayloadAction<{kind: 'Obstruction' | 'Squad' | 'Humvee', x: number, y: number, playerId?: number}>) => {
-      console.log("RUnning insert reducer")
-      switch (action.payload.kind) {
-        case 'Obstruction':
-          tokens.insert(new ObstructionToken(action.payload.x, action.payload.y))
-          break;
-        case 'Squad':
-          tokens.insert(new SquadToken(action.payload.x, action.payload.y, action.payload.playerId))
-          break;
-        case 'Humvee':
-          tokens.insert(new HumveeToken(action.payload.x, action.payload.y, action.payload.playerId))
-          break;
-        default:
-          break;
-      }
-      return tokens.find()
+const { actions } = store.addSlice('tokens', {
+  insert: (payload) => {
+    switch (payload.kind) {
+      case 'Obstruction':
+        tokens.insert(new ObstructionToken(payload.x, payload.y))
+        break;
+      case 'Squad':
+        tokens.insert(new SquadToken(payload.x, payload.y, payload.playerId))
+        break;
+      case 'Humvee':
+        tokens.insert(new HumveeToken(payload.x, payload.y, payload.playerId))
+        break;
+      default:
+        break;
     }
+  },
+  remove: (payload) => {
+    tokens.remove(payload)
   }
 })
-export const { insert } = tokensSlice.actions
 
-export default tokensSlice.reducer
+export const { insert, remove } = actions

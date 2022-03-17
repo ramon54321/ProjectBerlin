@@ -1,12 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { store } from '.'
 
-const turnsSlice = createSlice({
-  name: "turns",
-  initialState: 0,
-  reducers: {
-    increment: (state) => state += 1
-  }
+export let turn = 0
+
+const { actions } = store.addSlice('turns', {
+  increment: () => turn++
 })
-export const { increment } = turnsSlice.actions
 
-export default turnsSlice.reducer
+export const { increment } = actions

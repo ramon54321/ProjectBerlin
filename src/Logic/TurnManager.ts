@@ -1,7 +1,5 @@
-import { useDispatch } from "react-redux"
-import { store } from "../Store"
-import { increment } from "../Store/turns"
 import Orchestrator from "./Orchestrator"
+import { increment } from '../Store/turns'
 
 export default class TurnManager {
   playerCount: number
@@ -17,7 +15,9 @@ export default class TurnManager {
   }
   nextTurn() {
     this.currentTurn++
-    store.dispatch(increment())
+    // store.dispatch(increment())
+    increment()
+    
     if (this.currentTurn >= this.playerCount) {
       this.currentTurn = 0
       this.orchestrator.tickRound()
