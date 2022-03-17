@@ -25,7 +25,7 @@ export class Timer {
 export const myTimer = new Timer()
 
 export function init() {
-  ReactDOM.render(<UI timer={myTimer}/>,
+  ReactDOM.render(<UI /*timer={myTimer}*//>,
     document.getElementById("root")
   )
 }
