@@ -42,9 +42,7 @@ export class Store {
         id: this.subscribe(sliceName, () => forceUpdate()),
         sliceName: sliceName,
       }))
-      return () => {
-        subscribed.forEach(sub => this.unsubscribe(sub.sliceName, sub.id))
-      }
+      return () => subscribed.forEach(sub => this.unsubscribe(sub.sliceName, sub.id))
     }, [])
   }
   private subscribe(sliceName: string, callback: any): string {

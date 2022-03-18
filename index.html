@@ -4,18 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">
     <link href="./obj/styles.css" rel="stylesheet">
-    <title>Hello World!</title>
+    <title>Project Berlin</title>
   </head>
   <body>
     <canvas id="canvas"></canvas>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-    <!-- You can also require other files to run in this process -->
     <div id="root"></div>
-    <script>
-      require("./obj/renderer.js")
-    </script>
+    <script>require("./obj/renderer.js")</script>
   </body>
 </html>

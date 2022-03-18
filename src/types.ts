@@ -7,3 +7,7 @@ export interface ClickInfo {
   position: Vec2
   cellPosition: Vec2
 }
+
+export interface KeyInfo {
+  key: string
+}

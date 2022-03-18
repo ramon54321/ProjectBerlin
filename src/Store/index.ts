@@ -1,4 +1,4 @@
-import { Store } from './Salad'
+import { Store } from './Thorium'
 import Loki from 'lokijs'
 import { Token } from '../Logic/Token'
 

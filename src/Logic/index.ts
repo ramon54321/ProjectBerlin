@@ -1,11 +1,12 @@
 import { database } from '../Store'
 import * as Graphics from '../Graphics'
-import { ClickInfo } from '../types'
+import { ClickInfo, KeyInfo } from '../types'
 import PlayerManager from './PlayerManager'
 import TurnManager from './TurnManager'
 import Orchestrator from './Orchestrator'
 import { WORLD_HEIGHT, WORLD_WIDTH } from '../config'
 import * as Tokens from '../Store/tokens'
+import * as Selection from '../Store/selection'
 
 export const playerManager = new PlayerManager(3)
 const orchestrator = new Orchestrator(database, playerManager)
@@ -20,17 +21,25 @@ while (Tokens.tokens.count() < playerManager.getPlayerCount() * 2) {
   turnManager.nextTurn()
 }
 
+export function onKeyDown(keyInfo: KeyInfo) {
+  console.log(`Down: ${keyInfo.key}`)
+  Selection.deselectAll()
+}
+
 export function onClickNextTurn() {
   turnManager.nextTurn()
 }
 
 export function onClickCell(clickInfo: ClickInfo) {
   const position = clickInfo.cellPosition
+  Selection.deselectAll()
+  if (!Selection.selectedCellPosition) Selection.selectCell(position)
   const token = Tokens.tokens.findOne({ x: position.x, y: position.y })
-  if (token) {
-    if (token.kind === "Obstruction") Tokens.remove(token)
-  } else {
-    Tokens.insert({kind: 'Obstruction', x: position.x, y: position.y})
-  }
+  if (token) Selection.selectToken(token)
+  // if (token) {
+  //   if (token.kind === "Obstruction") Tokens.remove(token)
+  // } else {
+  //   Tokens.insert({kind: 'Obstruction', x: position.x, y: position.y})
+  // }
   Graphics.refreshCell(position, database, playerManager)
 }
